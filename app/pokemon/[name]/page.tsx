@@ -25,28 +25,27 @@ interface PageProps {
 
 export async function generateMetadata({
   params,
-}: {
-  params: PageProps;
-}): Promise<Metadata> {
+  searchParams,
+}: PageProps): Promise<Metadata> {
   // fetch data
   const pokemon: Pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.params.name}`
+    `https://pokeapi.co/api/v2/pokemon/${params.name}`
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata
-  const sprite = pokemon.sprites.front_default || [];
+  const sprite = pokemon.sprites.front_default;
 
   return {
     title: pokemon.name,
     description: "Just a pokemon desc",
     openGraph: {
       title: pokemon.name,
-      images: sprite,
+      images: [sprite],
     },
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.name}`
   );
