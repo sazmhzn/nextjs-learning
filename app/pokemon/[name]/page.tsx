@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import React from "react";
 
 export interface Pokemon {
@@ -23,10 +22,7 @@ interface PageProps {
   searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({
-  params,
-  searchParams,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps) {
   // fetch data
   const pokemon: Pokemon = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.name}`
@@ -45,7 +41,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params, searchParams }: PageProps) {
+export default async function Page({ params }: PageProps) {
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.name}`
   );
