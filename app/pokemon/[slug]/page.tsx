@@ -49,9 +49,10 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
+  console.log(slug);
 
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
-
+  console.log(response);
   if (!response.ok) throw new Error("Failed to fetch the pokemon data.");
 
   const pokemon: Pokemon = await response.json();
