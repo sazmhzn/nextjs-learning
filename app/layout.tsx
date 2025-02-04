@@ -26,7 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${montserrat.variable} antialiased`}>
+      <body
+        className={`${inter.variable} ${montserrat.variable} font-inter antialiased`}
+      >
         <header className="bg-red-300 h-14 row-start-3 flex gap-6 flex-wrap items-center justify-center">
           Header
         </header>
