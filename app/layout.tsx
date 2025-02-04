@@ -8,7 +8,7 @@ const inter = Inter({
   preload: true,
 });
 
-export const montserrat = Montserrat({
+const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
   preload: true,
@@ -32,7 +32,7 @@ export default function RootLayout({
         <header className="bg-red-300 h-14 row-start-3 flex gap-6 flex-wrap items-center justify-center">
           Header
         </header>
-        <main className={`${inter.className}`}>{children}</main>
+        <main>{children}</main>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
           Footer
         </footer>{" "}
