@@ -16,19 +16,25 @@ export interface Sprites {
   back_default: string;
 }
 
+interface PageProps {
+  params: {
+    name: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
 export async function generateMetadata({
   params,
 }: {
-  params: { name: string };
+  params: PageProps;
 }): Promise<Metadata> {
   // fetch data
   const pokemon: Pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.name}`
+    `https://pokeapi.co/api/v2/pokemon/${params.params.name}`
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata
   const sprite = pokemon.sprites.front_default || [];
-  console.log(pokemon.sprites.front_default);
 
   return {
     title: pokemon.name,
@@ -40,7 +46,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { name: string } }) {
+export default async function Page({ params }: PageProps) {
   const response = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${params.name}`
   );
