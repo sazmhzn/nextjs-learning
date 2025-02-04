@@ -17,15 +17,18 @@ export interface Sprites {
 
 interface PageProps {
   params: {
-    name: string;
+    name: Promise<string>;
   };
-  searchParams: { [key: string]: string | string[] | undefined };
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
+  const { slug } = params;
   // fetch data
   const pokemon: Pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.name}`
+    `https://pokeapi.co/api/v2/pokemon/${slug}`
   ).then((res) => res.json());
 
   // optionally access and extend (rather than replace) parent metadata
@@ -41,10 +44,13 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default async function Page({ params }: PageProps) {
-  const response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${params.name}`
-  );
+export default async function Page(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
+  const { slug } = params;
+
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
 
   if (!response.ok) throw new Error("Failed to fetch the pokemon data.");
 
