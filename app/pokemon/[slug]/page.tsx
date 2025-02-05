@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { describe } from "node:test";
 import React from "react";
 
 export interface Pokemon {
@@ -23,9 +24,16 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const { slug } = params;
   // fetch data
-  const pokemon: Pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${slug}`
-  ).then((res) => res.json());
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
+
+  if (!response.ok) {
+    return {
+      title: "No data",
+      description: "No data found",
+    };
+  }
+
+  const pokemon: Pokemon = await response?.json();
 
   // optionally access and extend (rather than replace) parent metadata
   const sprite = pokemon.sprites.front_default;
@@ -45,13 +53,14 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
-
+  console.log(slug);
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
-  // if (!response.ok) throw new Error("Failed to fetch the pokemon data.");
-  const pokemon: Pokemon = await response.json();
-  if (!pokemon) {
+
+  if (!response.ok) {
     notFound();
   }
+
+  const pokemon: Pokemon = await response?.json();
 
   console.log(pokemon);
   return (
