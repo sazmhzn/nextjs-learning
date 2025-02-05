@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,7 +31,7 @@ export default function RootLayout({
         className={`${inter.variable} ${montserrat.variable} font-inter antialiased`}
       >
         <header className="bg-red-300 h-14 row-start-3 flex gap-6 flex-wrap items-center justify-center">
-          Header
+          <Link href={"/"}>Home</Link> Header
         </header>
         <main>{children}</main>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
