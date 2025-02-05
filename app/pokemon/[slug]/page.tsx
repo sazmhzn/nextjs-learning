@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { describe } from "node:test";
 import React from "react";
+import styles from "./Pokemon.module.sass";
 
 export interface Pokemon {
   height: number;
@@ -64,22 +64,44 @@ export default async function Page(props: {
 
   console.log(pokemon);
   return (
-    <div className="min-h-svh m-12">
-      Pokemon data: {pokemon.order}
-      <Image
-        alt={`${pokemon.name} image`}
-        src={pokemon.sprites.front_default}
-        width={100}
-        height={100}
-      />
-      <div>
-        Name: <strong className="capitalize">{pokemon.name}</strong>
-      </div>
-      <div>
-        Height: <strong>{pokemon.height}</strong>
-      </div>
-      <div>
-        Weight: <strong>{pokemon.weight}</strong>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <h1 className={styles.title}>{pokemon.name}</h1>
+          <span className={styles.badge}>
+            #{String(pokemon.order).padStart(3, "0")}
+          </span>
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.imageContainer}>
+            <Image
+              alt={`${pokemon.name} image`}
+              src={pokemon.sprites.front_default}
+              width={150}
+              height={150}
+              className={styles.image}
+            />
+          </div>
+
+          <div className={styles.statsContainer}>
+            <div className={styles.name}>{pokemon.name}</div>
+
+            <div className={styles.statRow}>
+              <span className={styles.statLabel}>Height</span>
+              <strong className={styles.statValue}>
+                {(pokemon.height / 10).toFixed(1)}m
+              </strong>
+            </div>
+
+            <div className={styles.statRow}>
+              <span className={styles.statLabel}>Weight</span>
+              <strong className={styles.statValue}>
+                {(pokemon.weight / 10).toFixed(1)}kg
+              </strong>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
