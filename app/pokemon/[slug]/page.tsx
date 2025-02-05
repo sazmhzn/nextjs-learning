@@ -1,4 +1,7 @@
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
+import styles from "./Pokemon.module.sass";
 
 export interface Pokemon {
   height: number;
@@ -15,21 +18,22 @@ export interface Sprites {
   back_default: string;
 }
 
-interface PageProps {
-  params: {
-    name: Promise<string>;
-  };
-}
-
 export async function generateMetadata(props: {
   params: Promise<{ slug: string }>;
 }) {
   const params = await props.params;
   const { slug } = params;
   // fetch data
-  const pokemon: Pokemon = await fetch(
-    `https://pokeapi.co/api/v2/pokemon/${slug}`
-  ).then((res) => res.json());
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
+
+  if (!response.ok) {
+    return {
+      title: "No data",
+      description: "No data found",
+    };
+  }
+
+  const pokemon: Pokemon = await response?.json();
 
   // optionally access and extend (rather than replace) parent metadata
   const sprite = pokemon.sprites.front_default;
@@ -49,19 +53,52 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
-  console.log(slug);
-
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
-  console.log(response);
-  if (!response.ok) throw new Error("Failed to fetch the pokemon data.");
 
-  const pokemon: Pokemon = await response.json();
+  if (!response.ok) {
+    notFound();
+  }
+  const pokemon: Pokemon = await response?.json();
   return (
-    <div>
-      Pokemon data
-      <div>Name: {pokemon.name}</div>
-      <div>Height: {pokemon.height}</div>
-      <div>Weight: {pokemon.weight}</div>
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <div className={styles.cardHeader}>
+          <h1 className={styles.title}>{pokemon.name}</h1>
+          <span className={styles.badge}>
+            #{String(pokemon.order).padStart(3, "0")}
+          </span>
+        </div>
+
+        <div className={styles.content}>
+          <div className={styles.imageContainer}>
+            <Image
+              alt={`${pokemon.name} image`}
+              src={pokemon.sprites.front_default}
+              width={150}
+              height={150}
+              className={styles.image}
+            />
+          </div>
+
+          <div className={styles.statsContainer}>
+            <div className={styles.name}>{pokemon.name}</div>
+
+            <div className={styles.statRow}>
+              <span className={styles.statLabel}>Height</span>
+              <strong className={styles.statValue}>
+                {(pokemon.height / 10).toFixed(1)}m
+              </strong>
+            </div>
+
+            <div className={styles.statRow}>
+              <span className={styles.statLabel}>Weight</span>
+              <strong className={styles.statValue}>
+                {(pokemon.weight / 10).toFixed(1)}kg
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
