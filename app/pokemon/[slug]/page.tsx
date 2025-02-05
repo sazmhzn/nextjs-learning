@@ -53,16 +53,12 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
-  console.log(slug);
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
 
   if (!response.ok) {
     notFound();
   }
-
   const pokemon: Pokemon = await response?.json();
-
-  console.log(pokemon);
   return (
     <div className={styles.container}>
       <div className={styles.card}>

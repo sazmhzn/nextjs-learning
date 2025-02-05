@@ -5,7 +5,6 @@ import Link from "next/link";
 export const PokemonList: React.FC<{ pokemons: Pokemons[] }> = ({
   pokemons,
 }) => {
-  console.log(pokemons);
   return (
     <div>
       {pokemons.map((pokemon) => (
