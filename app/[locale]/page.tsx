@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  // const lang = (await params).locale;
+  // const dict = await getDictionary(lang);
+  const t = useTranslations("Index");
+
   return (
     <div className="grid items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 ">
       <main className="flex flex-col gap-8 items-center justify-center sm:items-start">
-        <h1 className="">
-          Hello, <span className="font-montserrat">World</span>
-        </h1>
+        <h1 className="">{t("title")}</h1>
 
         <Image
           alt="random image"
