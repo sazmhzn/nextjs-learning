@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 import styles from "./Pokemon.module.sass";
+import getPokemon from "@/lib/getPokemon";
 
 export interface Pokemon {
   height: number;
@@ -53,12 +53,8 @@ export default async function Page(props: {
 }) {
   const params = await props.params;
   const { slug } = params;
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
+  const pokemon: Pokemon = await getPokemon(slug);
 
-  if (!response.ok) {
-    notFound();
-  }
-  const pokemon: Pokemon = await response?.json();
   return (
     <div className={styles.container}>
       <Suspense fallback={<div>Loading pokemon....</div>}>
