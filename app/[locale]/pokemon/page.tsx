@@ -17,8 +17,6 @@ export interface Pokemons {
 
 export default async function Pokemon() {
   const pokemons: Promise<PokemonsResponse> = getAllPokemon();
-  // const pokemons = await data.json();
-  console.log(pokemons);
 
   return (
     <div className="min-h-screen">
