@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { ChangeEvent } from "react";
 import LangSwitcher from "@/components/LangSwitcher";
+import { useTranslations } from "next-intl";
+import Header from "@/components/Header";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,18 +30,12 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: Promise<{ locale: "en" | "np" }>;
 }>) {
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    redirect(`/${e.target.value}`);
-  };
   return (
     <html lang={(await params).locale}>
       <body
         className={`${inter.variable} ${montserrat.variable} font-inter antialiased`}
       >
-        <header className="bg-red-300 h-14 row-start-3 flex gap-6 flex-wrap items-center justify-center">
-          <Link href={"/"}>Home</Link> Header
-          <LangSwitcher />
-        </header>
+        <Header />
         <main>{children}</main>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
           Footer
