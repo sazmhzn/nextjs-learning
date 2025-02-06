@@ -1,0 +1,9 @@
+{
+  "Index": {
+    "title": "Hello world!",
+    "nav": {
+      "home": "Home",
+      "header": "Header"
+    }
+  }
+}
