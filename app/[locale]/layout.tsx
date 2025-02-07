@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import LangSwitcher from "@/components/LangSwitcher";
-import { useTranslations } from "next-intl";
 import Header from "@/components/Header";
 
 const inter = Inter({
@@ -39,7 +36,7 @@ export default async function RootLayout({
         <main>{children}</main>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
           Footer
-        </footer>{" "}
+        </footer>
       </body>
     </html>
   );
