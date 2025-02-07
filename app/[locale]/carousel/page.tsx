@@ -14,7 +14,7 @@ const SLIDES = [
 export default function Carousel() {
   return (
     <section className="min-h-[90vh] flex items-center justify-center">
-      <div className="container max-w-full bg-red-400">
+      <div className="container max-w-full">
         <header className="px-8 mb-12 lg:mb-24">
           <h1 className="text-white tracking-tighter text-balance text-[clamp(2rem,7vw,6rem)]">
             Pokemons

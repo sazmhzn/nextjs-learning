@@ -35,7 +35,7 @@ export default async function RootLayout({
       >
         <Header />
         <NextIntlClientProvider>
-          <main>{children}</main>
+          <main className="mt-14">{children}</main>
         </NextIntlClientProvider>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
           Footer
