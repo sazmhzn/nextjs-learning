@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { NextIntlClientProvider } from "next-intl";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +34,9 @@ export default async function RootLayout({
         className={`${inter.variable} ${montserrat.variable} font-inter antialiased`}
       >
         <Header />
-        <main>{children}</main>
+        <NextIntlClientProvider>
+          <main>{children}</main>
+        </NextIntlClientProvider>
         <footer className="bg-yellow-400 row-start-3 flex gap-6 flex-wrap h-32 items-center justify-center">
           Footer
         </footer>
