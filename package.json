@@ -21,6 +21,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "cz-conventional-changelog": "^3.3.0",
+    "embla-carousel-react": "^8.5.2",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
