@@ -8,6 +8,7 @@ const Header = () => {
   return (
     <header className="bg-red-300 h-14 row-start-3 flex gap-6 flex-wrap items-center justify-center">
       <Link href={"/"}>{t("home")}</Link> {t("header")}
+      <Link href="/carousel"> Carousel </Link>
       <LangSwitcher />
     </header>
   );

@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 export default function Home() {
-  // const lang = (await params).locale;
-  // const dict = await getDictionary(lang);
   const t = useTranslations("Index");
 
   return (

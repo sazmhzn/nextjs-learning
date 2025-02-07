@@ -1,0 +1,23 @@
+
+.embla
+  max-width: 100vw
+  // margin: auto
+  $slide-spacing: 2rem
+  $slide-size: min(30%, 300px)
+
+  &__viewport
+    overflow: hidden
+    margin-left: 1.5rem // Shift the entire carousel to match the heading
+
+  &__container
+    display: flex
+    margin-inline: 0
+    touch-action: pan-y pinch-zoom
+
+  &__slide
+    margin-right: $slide-spacing
+    min-height: 300px
+    flex: 0 0 $slide-size
+    width: 100%
+    border: 1px solid white
+    transition: transform 0.3s ease-out
