@@ -14,6 +14,10 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": ["warn"],
+      "no-console": {
+        severity: "warning",
+        options: ["log", "error", "debug", "info", "time", "timeEnd", "trace"],
+      },
     },
   },
 ];
