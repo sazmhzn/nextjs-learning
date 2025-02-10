@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { NextIntlClientProvider, useLocale } from "next-intl";
 import { locales } from "@/config";
 import { usePathname, useRouter } from "next/navigation";
 
