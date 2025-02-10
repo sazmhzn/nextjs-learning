@@ -19,7 +19,7 @@ export default async function Pokemon() {
 
   return (
     <div className="min-h-screen">
-      <Suspense fallback={<div>Gettign you pokemonsasd</div>}>
+      <Suspense fallback={<div>Gettign you pokemons</div>}>
         <PokemonList pokemons={(await pokemons).results} />
       </Suspense>
     </div>
