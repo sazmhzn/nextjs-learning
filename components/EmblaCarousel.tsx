@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef } from "react";
 import {
-  EmblaOptionsType,
   EmblaCarouselType,
   EmblaEventType,
+  EmblaOptionsType,
 } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import styles from "./embla.module.sass";
 import Image from "next/image";
+import { useCallback, useEffect } from "react";
+import styles from "./embla.module.sass";
 
 type PropType = {
   slides: { id: number; image: string }[];
@@ -43,7 +43,7 @@ const EmblaCarousel = ({ slides, options }: PropType) => {
                 src={slide.image}
                 className="object-cover w-full h-full"
                 width={300}
-                height={100}
+                height={600}
               />
             </div>
           ))}

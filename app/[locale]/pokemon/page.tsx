@@ -1,7 +1,6 @@
-"use server";
-import React, { Suspense } from "react";
-import { PokemonList } from "./components/PokemonList";
 import getAllPokemon from "@/lib/getAllPokemon";
+import { Suspense } from "react";
+import { PokemonList } from "./_components/PokemonList";
 
 export interface PokemonsResponse {
   count: number;
@@ -20,7 +19,7 @@ export default async function Pokemon() {
 
   return (
     <div className="min-h-screen">
-      <Suspense fallback={<div>Gettign you pokemons</div>}>
+      <Suspense fallback={<div>Gettign you pokemonsasd</div>}>
         <PokemonList pokemons={(await pokemons).results} />
       </Suspense>
     </div>

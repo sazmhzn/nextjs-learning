@@ -1,8 +1,7 @@
-import Image from "next/image";
-import React, { Suspense } from "react";
-import styles from "./Pokemon.module.sass";
 import getPokemon from "@/lib/getPokemon";
+import { Suspense } from "react";
 import { PokemonCard } from "./components/pokemonCard";
+import styles from "./Pokemon.module.sass";
 
 export interface Pokemon {
   height: number;
