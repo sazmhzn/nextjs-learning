@@ -2,9 +2,7 @@ import React from "react";
 import { Pokemons } from "../page";
 import Link from "next/link";
 
-export const PokemonList: React.FC<{ pokemons: Pokemons[] }> = ({
-  pokemons,
-}) => {
+export const PokemonList = ({ pokemons }: { pokemons: Pokemons[] }) => {
   return (
     <div>
       {pokemons.map((pokemon) => (
