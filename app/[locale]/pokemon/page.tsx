@@ -1,7 +1,6 @@
-"use server";
-import React, { Suspense } from "react";
-import { PokemonList } from "./components/PokemonList";
 import getAllPokemon from "@/lib/getAllPokemon";
+import { Suspense } from "react";
+import { PokemonList } from "./_components/PokemonList";
 
 export interface PokemonsResponse {
   count: number;
